@@ -1,3 +1,6 @@
+import { TextControl } from "@wordpress/components";
+import "./index.scss";
+
 wp.blocks.registerBlockType("quizplugin/quizblock", {
   title: "Quiz Block",
   icon: "smiley",
@@ -6,36 +9,28 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
     skyColor: { type: "string" },
     grassColor: { type: "string" },
   },
-  edit: function (props) {
-    function updateSkyColor(e) {
-      props.setAttributes({ skyColor: e.target.value });
-    }
-
-    function updateGrassColor(e) {
-      props.setAttributes({ grassColor: e.target.value });
-    }
-
-    return (
-      <div>
-        <input
-          type="text"
-          placeholder="Sky Color"
-          onChange={updateSkyColor}
-          value={props.attributes.skyColor}
-        />
-        <input
-          type="text"
-          placeholder="Grass Color"
-          onChange={updateGrassColor}
-          value={props.attributes.grassColor}
-        />
-      </div>
-    );
-  },
+  edit: EditComponent,
   save: function () {
     return null;
   },
 });
+
+function EditComponent(props) {
+  function updateSkyColor(e) {
+    props.setAttributes({ skyColor: e.target.value });
+  }
+
+  function updateGrassColor(e) {
+    props.setAttributes({ grassColor: e.target.value });
+  }
+
+  // TextControl is a WordPress element
+  return (
+    <div className="quizEditBlock">
+      <TextControl label="Question:" />
+    </div>
+  );
+}
 
 // How to get jsx to work?
 // install node

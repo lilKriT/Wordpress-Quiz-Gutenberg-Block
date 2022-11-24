@@ -19,10 +19,15 @@ class QuizBlock
 
     function adminAssets()
     {
-        wp_register_script("quizBlockType", plugin_dir_url(__FILE__) . "build/index.js", array('wp-blocks', "wp-element"));
+        // importing css, you also have to add it in "register_block_type"
+        wp_register_style("quizCSS", plugin_dir_url(__FILE__) . "build/index.css");
+
+        // wp-editor is for TextControl
+        wp_register_script("quizBlockType", plugin_dir_url(__FILE__) . "build/index.js", array('wp-blocks', "wp-element", "wp-editor"));
         // namespace and block name, array of options
         register_block_type("quizplugin/quizblock", array(
             "editor_script" => "quizBlockType",
+            "editor_style" => "quizCSS",
             "render_callback" => array($this, "blockHTML")
         ));
     }
