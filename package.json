@@ -1,0 +1,25 @@
+{
+  "name": "quiz-block",
+  "version": "1.0.0",
+  "description": "A simple block that allows the user to create a Quiz. Following a Udemy tutorial.\r Created by lilKriT.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilKriT/Wordpress-Quiz-Gutenberg-Block.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilKriT/Wordpress-Quiz-Gutenberg-Block/issues"
+  },
+  "homepage": "https://github.com/lilKriT/Wordpress-Quiz-Gutenberg-Block#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^24.6.0"
+  }
+}
