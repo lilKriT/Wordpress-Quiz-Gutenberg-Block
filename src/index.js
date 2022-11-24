@@ -34,6 +34,14 @@ function EditComponent(props) {
       return index != indexToDelete;
     });
     props.setAttributes({ answers: newAnswers });
+
+    if (indexToDelete == props.attributes.correctAnswer) {
+      props.setAttributes({ correctAnswer: undefined });
+    }
+  }
+
+  function markAsCorrect(index) {
+    props.setAttributes({ correctAnswer: index });
   }
 
   // TextControl is a WordPress element
@@ -64,8 +72,15 @@ function EditComponent(props) {
               />
             </FlexBlock>
             <FlexItem>
-              <Button>
-                <Icon className="markAsCorrect" icon="star-empty" />
+              <Button onClick={() => markAsCorrect(index)}>
+                <Icon
+                  className="markAsCorrect"
+                  icon={
+                    index == props.attributes.correctAnswer
+                      ? "star-filled"
+                      : "star-empty"
+                  }
+                />
               </Button>
             </FlexItem>
             <FlexItem>
