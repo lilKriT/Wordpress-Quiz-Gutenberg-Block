@@ -36,21 +36,24 @@ function EditComponent(props) {
   // FlexItem only takes as much as it needs
   return (
     <div className="quizEditBlock">
-      <TextControl label="Question:" />
-      <p>Answers:</p>
+      <TextControl label="Question:" style={{ fontSize: "20px" }} />
+      <p style={{ fontSize: 13, margin: "20px 0 8px" }}>Answers:</p>
       <Flex>
         <FlexBlock>
           <TextControl />
         </FlexBlock>
         <FlexItem>
           <Button>
-            <Icon icon="star-empty" />
+            <Icon className="markAsCorrect" icon="star-empty" />
           </Button>
         </FlexItem>
         <FlexItem>
-          <Button>Delete</Button>
+          <Button isLink className="delete">
+            Delete
+          </Button>
         </FlexItem>
       </Flex>
+      <Button variant="primary">Add another answer</Button>
     </div>
   );
 }
