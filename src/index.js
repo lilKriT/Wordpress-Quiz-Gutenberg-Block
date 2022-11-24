@@ -8,6 +8,37 @@ import {
   Icon,
 } from "@wordpress/components";
 
+function quizStartFunction() {
+  // this will run any time content changes
+  let locked = false;
+
+  wp.data.subscribe(function () {
+    const results = wp.data
+      .select("core/block-editor")
+      .getBlocks()
+      .filter((block) => {
+        return (
+          block.name == "quizplugin/quizblock" &&
+          block.attributes.correctAnswer == undefined
+        );
+      });
+
+    // console.log(results.length);
+
+    if (results.length > 0 && locked == false) {
+      locked = true;
+      wp.data.dispatch("core/editor").lockPostSaving("noanswer");
+    }
+
+    if (!results.length && locked) {
+      locked = false;
+      wp.data.dispatch("core/editor").unlockPostSaving("noanswer");
+    }
+  });
+}
+
+quizStartFunction();
+
 wp.blocks.registerBlockType("quizplugin/quizblock", {
   title: "Quiz Block",
   icon: "smiley",
