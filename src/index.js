@@ -8,7 +8,8 @@ import {
   Icon,
 } from "@wordpress/components";
 
-function quizStartFunction() {
+// This trick will let you run a function without a name (immediately invoked function expression)
+(function () {
   // this will run any time content changes
   let locked = false;
 
@@ -35,9 +36,7 @@ function quizStartFunction() {
       wp.data.dispatch("core/editor").unlockPostSaving("noanswer");
     }
   });
-}
-
-quizStartFunction();
+})();
 
 wp.blocks.registerBlockType("quizplugin/quizblock", {
   title: "Quiz Block",
@@ -45,7 +44,7 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
   category: "common",
   attributes: {
     question: { type: "string" },
-    answers: { type: "array", default: ["red", "blue"] },
+    answers: { type: "array", default: [undefined] },
     correctAnswer: { type: "number", default: undefined },
   },
   edit: EditComponent,
@@ -68,6 +67,11 @@ function EditComponent(props) {
 
     if (indexToDelete == props.attributes.correctAnswer) {
       props.setAttributes({ correctAnswer: undefined });
+    }
+
+    if (indexToDelete < props.attributes.correctAnswer) {
+      let newAnswer = props.attributes.correctAnswer - 1;
+      props.setAttributes({ correctAnswer: newAnswer });
     }
   }
 
