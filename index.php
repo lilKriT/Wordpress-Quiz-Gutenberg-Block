@@ -41,7 +41,7 @@ class QuizBlock
         }
 
         ob_start(); ?>
-        <p>Today the sky is <?php echo esc_html($attributes["skyColor"]) ?> and the grass is <?php echo esc_html($attributes["grassColor"]) ?>!?</p>
+        <div class="paying-attention-update-me"></div>
 <?php return ob_get_clean();
     }
 }
