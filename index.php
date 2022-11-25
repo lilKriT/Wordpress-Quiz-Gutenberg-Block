@@ -39,7 +39,7 @@ class QuizBlock
         // We load the CSS for the block here - this way, it will only load if we actually use it.
         if (!is_admin()) {
             wp_enqueue_script("quizFrontEnd", plugin_dir_url(__FILE__) . "build/frontend.js", array('wp-element'), "1.0", true);
-            wp_enqueue_style("quizFrontEndStyles", plugin_dir_url(__FILE__) . "build/frontend.css");
+            // wp_enqueue_style("quizFrontEndStyles", plugin_dir_url(__FILE__) . "build/frontend.css");
         }
 
         ob_start(); ?>

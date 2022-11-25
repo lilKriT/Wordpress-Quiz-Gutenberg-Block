@@ -5,8 +5,8 @@
   "title": "lilKriT's Quiz Block",
   "editorScript": "file:./build/index.js",
   "editorStyle": "file:./build/index.css",
-  "script": "file:./script.js",
-  "viewScript": ["file:./view.js", "example-shared-view-script"],
-  "style": ["file:./style.css", "example-shared-style"],
+  "script": "file:./build/script.js",
+  "viewScript": ["file:./build.view.js", "example-shared-view-script"],
+  "style": ["file:./build/frontend.css", "example-shared-style"],
   "render": "file:./render.php"
 }
