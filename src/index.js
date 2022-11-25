@@ -10,7 +10,11 @@ import {
   PanelRow,
   ColorPicker,
 } from "@wordpress/components";
-import { InspectorControls } from "@wordpress/block-editor";
+import {
+  InspectorControls,
+  BlockControls,
+  AlignmentToolbar,
+} from "@wordpress/block-editor";
 import { ChromePicker } from "react-color";
 
 // This trick will let you run a function without a name (immediately invoked function expression)
@@ -52,6 +56,7 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
     answers: { type: "array", default: [undefined] },
     correctAnswer: { type: "number", default: undefined },
     bgColor: { type: "string", default: "#ebebeb" },
+    questionAlignment: { type: "string", default: "left" },
   },
   edit: EditComponent,
   save: function () {
@@ -93,6 +98,12 @@ function EditComponent(props) {
       className="quizEditBlock"
       style={{ backgroundColor: props.attributes.bgColor }}
     >
+      <BlockControls>
+        <AlignmentToolbar
+          value={props.attributes.questionAlignment}
+          onChange={(e) => props.setAttributes({ questionAlignment: e })}
+        />
+      </BlockControls>
       <InspectorControls>
         <PanelBody title="Background Color" initialOpen={true}>
           <PanelRow>
