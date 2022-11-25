@@ -21,5 +21,8 @@
   "homepage": "https://github.com/lilKriT/Wordpress-Quiz-Gutenberg-Block#readme",
   "devDependencies": {
     "@wordpress/scripts": "^24.6.0"
+  },
+  "dependencies": {
+    "react-color": "^2.19.3"
   }
 }

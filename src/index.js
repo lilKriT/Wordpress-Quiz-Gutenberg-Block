@@ -6,7 +6,12 @@ import {
   FlexItem,
   Button,
   Icon,
+  PanelBody,
+  PanelRow,
+  ColorPicker,
 } from "@wordpress/components";
+import { InspectorControls } from "@wordpress/block-editor";
+import { ChromePicker } from "react-color";
 
 // This trick will let you run a function without a name (immediately invoked function expression)
 (function () {
@@ -46,6 +51,7 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
     question: { type: "string" },
     answers: { type: "array", default: [undefined] },
     correctAnswer: { type: "number", default: undefined },
+    bgColor: { type: "string", default: "#ebebeb" },
   },
   edit: EditComponent,
   save: function () {
@@ -83,7 +89,23 @@ function EditComponent(props) {
   // FlexBlock takes all the space it can
   // FlexItem only takes as much as it needs
   return (
-    <div className="quizEditBlock">
+    <div
+      className="quizEditBlock"
+      style={{ backgroundColor: props.attributes.bgColor }}
+    >
+      <InspectorControls>
+        <PanelBody title="Background Color" initialOpen={true}>
+          <PanelRow>
+            <ChromePicker
+              color={props.attributes.bgColor}
+              onChangeComplete={(e) => {
+                props.setAttributes({ bgColor: e.hex });
+              }}
+              disableAlpha={true}
+            />
+          </PanelRow>
+        </PanelBody>
+      </InspectorControls>
       <TextControl
         label="Question:"
         value={props.attributes.question}
