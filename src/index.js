@@ -14,6 +14,7 @@ import {
   InspectorControls,
   BlockControls,
   AlignmentToolbar,
+  useBlockProps,
 } from "@wordpress/block-editor";
 import { ChromePicker } from "react-color";
 
@@ -75,6 +76,11 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
 });
 
 function EditComponent(props) {
+  const blockProps = useBlockProps({
+    className: "quizEditBlock",
+    style: { backgroundColor: props.attributes.bgColor },
+  }); // those will get appended
+
   function updateQuestion(value) {
     props.setAttributes({ question: value });
   }
@@ -104,10 +110,7 @@ function EditComponent(props) {
   // FlexBlock takes all the space it can
   // FlexItem only takes as much as it needs
   return (
-    <div
-      className="quizEditBlock"
-      style={{ backgroundColor: props.attributes.bgColor }}
-    >
+    <div {...blockProps}>
       <BlockControls>
         <AlignmentToolbar
           value={props.attributes.questionAlignment}
