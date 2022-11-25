@@ -71,6 +71,7 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
       questionAlignment: "center",
     },
   },
+  description: "A block that allows you to add a quiz to the post.",
 });
 
 function EditComponent(props) {
