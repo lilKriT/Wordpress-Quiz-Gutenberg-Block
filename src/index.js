@@ -62,6 +62,15 @@ wp.blocks.registerBlockType("quizplugin/quizblock", {
   save: function () {
     return null;
   },
+  example: {
+    attributes: {
+      question: "Whats your name?",
+      answers: ["John", "Jim", "James"],
+      correctAnswer: 3,
+      bgColor: "#CFE8F1",
+      questionAlignment: "center",
+    },
+  },
 });
 
 function EditComponent(props) {
