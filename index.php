@@ -20,15 +20,15 @@ class QuizBlock
     function adminAssets()
     {
         // importing css, you also have to add it in "register_block_type"
-        // wp_register_style("quizCSS", plugin_dir_url(__FILE__) . "build/index.css");
+        wp_register_style("quizCSS", plugin_dir_url(__FILE__) . "build/index.css");
 
         // wp-editor is for TextControl
-        // wp_register_script("quizBlockType", plugin_dir_url(__FILE__) . "build/index.js", array('wp-blocks', "wp-element", "wp-editor"));
+        wp_register_script("quizBlockType", plugin_dir_url(__FILE__) . "build/index.js", array('wp-blocks', "wp-element", "wp-editor"));
         // namespace and block name, array of options
         // If you use block.json, instead point to the folder
-        register_block_type(__DIR__, array(
-            // "editor_script" => "quizBlockType",
-            // "editor_style" => "quizCSS",
+        register_block_type("quizplugin/quizblock", array(
+            "editor_script" => "quizBlockType",
+            "editor_style" => "quizCSS",
             "render_callback" => array($this, "blockHTML")
         ));
         // Much simpler with block.json ;)
@@ -39,7 +39,7 @@ class QuizBlock
         // We load the CSS for the block here - this way, it will only load if we actually use it.
         if (!is_admin()) {
             wp_enqueue_script("quizFrontEnd", plugin_dir_url(__FILE__) . "build/frontend.js", array('wp-element'), "1.0", true);
-            // wp_enqueue_style("quizFrontEndStyles", plugin_dir_url(__FILE__) . "build/frontend.css");
+            wp_enqueue_style("quizFrontEndStyles", plugin_dir_url(__FILE__) . "build/frontend.css");
         }
 
         ob_start(); ?>
